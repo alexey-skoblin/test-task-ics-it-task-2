@@ -12,9 +12,9 @@ begin
     )
     update b
     set b.DiscountValue = b.Value * 0.05
-    from dbo.Basket b
-        inner join inserted i on i.ID = b.ID
-        inner join cte_MultiInsertSKU mis on mis.ID_SKU = i.ID_SKU
+    from dbo.Basket as b
+        inner join inserted as i on i.ID = b.ID
+        inner join cte_MultiInsertSKU as mis on mis.ID_SKU = i.ID_SKU
     where b.ID = i.ID
 
     -- Обновление DiscountValue для остальных записей
@@ -27,7 +27,7 @@ begin
     update b
     set b.DiscountValue = 0
     from dbo.Basket b
-        inner join inserted i on i.ID = b.ID
-        inner join cte_SingleInsertSKU sis on sis.ID_SKU = i.ID_SKU
+        inner join inserted as i on i.ID = b.ID
+        inner join cte_SingleInsertSKU as sis on sis.ID_SKU = i.ID_SKU
     where b.ID = i.ID
 end

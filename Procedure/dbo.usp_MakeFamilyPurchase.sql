@@ -17,9 +17,9 @@ begin
     update f
     set BudgetValue = cast(BudgetValue as decimal(18, 2)) - (
         select sum(Value)
-        from dbo.Basket b
+        from dbo.Basket as b
         where b.ID_Family = f.ID
     )
-    from dbo.Family f
+    from dbo.Family as f
     where f.Surname = @FamilySurName;
 end
